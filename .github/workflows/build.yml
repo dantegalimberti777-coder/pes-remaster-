@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches: [ gstack ]
+  pull_request:
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            cmake build-essential libgl1-mesa-dev libsdl2-dev \
+            libsdl2-image-dev libsdl2-ttf-dev libsdl2-gfx-dev libopenal-dev \
+            libboost-all-dev libdirectfb-dev libsqlite3-dev
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+
+      - name: Build
+        run: cmake --build build -j"$(nproc)"
