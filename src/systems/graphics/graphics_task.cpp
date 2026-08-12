@@ -57,7 +57,7 @@ namespace blunted {
 
     Log(e_Notice, "GraphicsTask", "operator()()", "Shutting down GraphicsSystemTask thread");
 
-    if (messageQueue.GetPending() > 0) Log(e_Error, "GraphicsTask", "operator()()", messageQueue.GetPending() + " messages left on quit!");
+    if (messageQueue.GetPending() > 0) Log(e_Error, "GraphicsTask", "operator()()", int_to_str(messageQueue.GetPending()) + " messages left on quit!");
   }
 
 

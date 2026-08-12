@@ -7,6 +7,7 @@
 #include "framework/workerthread.hpp"
 
 #include "base/log.hpp"
+#include "base/utils.hpp"
 
 namespace blunted {
 
@@ -56,7 +57,7 @@ namespace blunted {
 
     pool.clear();
 
-    if (workQueue.GetPending() > 0) Log(e_FatalError, "TaskManager", "Exit", workQueue.GetPending() + " messages left on quit!");
+    if (workQueue.GetPending() > 0) Log(e_FatalError, "TaskManager", "Exit", int_to_str(workQueue.GetPending()) + " messages left on quit!");
   }
 
   int TaskManager::GetWorkerThreadCount() {

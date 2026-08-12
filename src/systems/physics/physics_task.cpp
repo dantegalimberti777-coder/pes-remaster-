@@ -49,7 +49,7 @@ namespace blunted {
 
     Log(e_Notice, "PhysicsTask", "operator()()", "Shutting down PhysicsSystemTask thread");
 
-    if (messageQueue.GetPending() > 0) Log(e_Error, "PhysicsTask", "operator()()", messageQueue.GetPending() + " messages left on quit!");
+    if (messageQueue.GetPending() > 0) Log(e_Error, "PhysicsTask", "operator()()", int_to_str(messageQueue.GetPending()) + " messages left on quit!");
   }
 
   void PhysicsTask::GetPhase() {
