@@ -6,6 +6,7 @@
 
 #include "utils/database.hpp"
 
+#include "base/log.hpp"
 #include "base/utils.hpp"
 
 #include "../main.hpp"
@@ -16,6 +17,10 @@ PlayerData::PlayerData(int playerDatabaseID) : databaseID(playerDatabaseID) {
   //printf("test: %s\n", test.c_str());
 
   DatabaseResult *result = GetDB()->Query("select firstname, lastname, role, base_stat, profile_xml, age, skincolor, hairstyle, haircolor, height from players where id = " + int_to_str(databaseID) + " limit 1");
+
+  if (result->data.empty()) {
+    Log(e_FatalError, "PlayerData", "PlayerData", "No player found in database with id " + int_to_str(databaseID));
+  }
 
   std::string roleString;
   std::string profileString;
